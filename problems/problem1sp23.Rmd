@@ -1,0 +1,66 @@
+---
+title: "Problem Section 1"
+subtitle:  "Robustness of the t-test"
+graphics: yes
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+### Exercises 
+
+1. Every t test makes the same explicit assumption - namely, that the set of $n$ data points - $X_1,X_2, \dots, X_n$ - are normally distributed. 
+If the normality assumption is not satisfied, then the ratio 
+$$T = \frac{\bar{X} - \mu_0}{\frac{S}{\sqrt{n}}}$$ will not have a t-distribution. However, whether or not the validity of the t-test is compromised depends on how different the actual distribution of the statistic $T$ is from the $t$ distribution.
+
+In this exercise, you will investigate the sensitivity of the $T$ ratio to violations of the normality assumption by
+simulating samples of size $n$ from selected distributions and comparing the resulting
+histogram to the $t$ distribution with $n-1$ degrees of freedom.
+
+
+a. Simulate $B = 10,000$ samples of size $n = 6, 15$ each from a Unif(0,1) distribution. For each sample, calculate $$t = \frac{\sqrt{n}(\bar{x} - \mu_0)}{s}$$ where $\mu_0 = \frac{1}{2}$ is the mean of the uniform distribution. Create a histogram of the $t$ ratios and superimpose the $t$ distribution with $n-1$ degrees of freedom. What do you notice?
+
+```{r unif-dist}
+set.seed(2737)
+
+```
+
+b. Repeat part a. for samples drawn from an exponential distribution with rate $\lambda_0 = 2$. (Note: $\mu_0 = 1/2$ for this distribution also) What do you notice?
+
+```{r exp-dist}
+set.seed(88)
+```
+
+
+2. Your simulations in problem 1 should show that the distribution of $$T = \frac{\sqrt{n}(\bar{X} - \mu_0)}{S}$$ will become increasingly similar to a $t_{n-1}$ distribution as $n$ increases, regardless of which distribution you sample from. Can you explain why this happens?
+
+3. What is $Cov(X, X)$?
+
+4. Two draws are made at random from the box below
+\begin{center}
+$\fbox{ \fbox{1} \fbox{2} \fbox{3}  }$.
+\end{center}
+
+Let $X$ denote the number on the first randomly selected ticket and $Y$ the second. The joint PMF of $\langle X, Y \rangle$ is shown below.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|cccccc|ccccc|}
+& & \multicolumn{3}{c}{With replacement} & & & \multicolumn{3}{c}{Without replacement} & \\ \hline
+& & \multicolumn{3}{c}{$X$} & $f_{Y}$ & & \multicolumn{3}{c}{$X$} & $f_{Y}$ \\ 
+& & 1 & 2 & 3 & & & 1 & 2 & 3  & \\ \hline
+& 1 & $\frac{1}{9}$ & $\frac{1}{9}$ & $\frac{1}{9}$ & $\frac{1}{3}$ & & 0 & $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{3}$ \\ 
+$Y$ & 2 & $\frac{1}{9}$ & $\frac{1}{9}$ & $\frac{1}{9}$ &  $\frac{1}{3}$ &  & $\frac{1}{6}$ & 0 & $\frac{1}{6}$ &  $\frac{1}{3}$ \\ 
+& 3 & $\frac{1}{9}$ & $\frac{1}{9}$ & $\frac{1}{9}$ & $\frac{1}{3}$ &   & $\frac{1}{6}$ & $\frac{1}{6}$ & 0& $\frac{1}{3}$ \\ \hline
+& $f_{X}$ & $\frac{1}{3}$ & $\frac{1}{3}$ & $\frac{1}{3}$ & 1.00  & & $\frac{1}{3}$ & $\frac{1}{3}$ & $\frac{1}{3}$  & 1.00
+\end{tabular}
+\end{table}
+
+
+a. When the draws are made with replacement, $Cov\left[X, Y \right]=0$. Why?
+
+b.  Find $Cov\left[ X, Y \right]$ when the draws are made without replacement. Does the sign make sense?

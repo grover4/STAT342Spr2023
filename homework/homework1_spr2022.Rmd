@@ -1,0 +1,88 @@
+---
+title: "Take Home 1"
+subtitle: "Spring 2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This homework is due on Tuesday April 12 by midnight PST.
+
+\textbf{Instructions}: Follow each one diligently. 
+\hrule
+\begin{enumerate}
+	\item Please type your answers and upload as a PDF in Gradescope. If you prefer to write your answers, we will accept handwritten work provided it is legible. If you decide to go this route, be sure to [scan](https://www.camscanner.com) and upload a single file.  
+	\item Write your full name (as it appears in the grade book) on the first page, preferably as a running header on each page if you are writing by hand.
+	\item Answer the questions in order and number them as I have here. 
+	\item \textbf{Write complete answers which includes justifications for steps and/or references to results you use. This is really important.You all need to practice writing mathematical answers - define notation, explain what you are doing, cite any rules, etc. }
+	\item Clearly indicate your final answer. Put a frame around it where appropriate.
+	\item \textbf{For questions that involve coding, you must include code and not just the answers. } 
+\end{enumerate}
+\hrule 
+
+\textbf{Rule on collaboration:} You may discuss the answers in general terms with your peers and even guide someone who is stuck by giving high level advice. However, you are expected to write up your answers individually and entirely in your own words. 
+
+\begin{enumerate}
+	\item (1 point) Define the vectors
+	
+	 - $\mathbf{w}_1 = \frac{1}{2} \langle 1,1,1,1\rangle$
+	 
+	 - $\mathbf{w}_2 = \frac{1}{2} \langle 1,1,-1,-1\rangle$
+	 
+   -$\mathbf{w}_3 = \frac{1}{2} \langle 1,-1,-1,1\rangle$
+   
+   - $\mathbf{w}_4 = \frac{1}{2} \langle 1,-1,1,-1\rangle$
+   
+   a. Show that these vectors form an orthonormal basis of $\mathbb{R}^4$.This means show that they are pairwise orthogonal and of unit length.
+   
+   b. Let $x = \langle 3, 4,5, 8 \rangle$. Determine the projection coordinates
+   $$p_i = \mathbf{x} \cdot \mathbf{w}_i,$$
+   and verify that $$\mathbf{x} = \sum\limits_{i=1}^{4} p_i \mathbf{w}_i.$$  (You may verify your your calculation of the projection vectors $p_i \mathbf{w}_i$ using `project` from **fastR2** but you must do the problem by hand.)
+   
+   c. Calculate the sample variance $s^2$ using this dataset and  verify that $$s^2 = \frac{1}{3} \sum\limits_{i=2}^{4} p^2_i.$$
+  
+   d. Take a look at problem 2 in Practice Problems 2.1 where the previous questions were answered using $\mathbf{u}$ instead of $\mathbf{w}$. What do you learn from this?
+   
+   
+\item (2 point) This problem is concerned with estimation of the variance of a normal distribution with unknown mean from a sample $X_1, X_2, \dots, X_n$ of i.i.d. normal random variables. In answering the question, you may use without proof the fact that
+$$\frac{(n - 1) S^2}{\sigma^2} \sim Chisq(n-1)$$
+and that the mean and variance of a chi-square random variable with $n$ degrees of freedom are $n$ and $2n$ respectively.
+
+
+a. Use the results mentioned above to find $E\left[S^2 \right]$ and $Var\left[ S^2 \right]$.
+ 
+\emph{Hint:} Here is how you might find the expectation of $S^2$:
+$$E \left[ S^2 \right] = E\left[  \frac{\sigma^2}{n-1} \frac{(n-1)\:S^2}{\sigma^2} \right] =
+\frac{\sigma^2}{(n-1)} E \left[ \frac{(n-1)\:S^2}{\sigma^2} \right]$$
+and then use the results stated in the problem statement.
+
+b. Consider $S^2$ as an estimator of $\sigma^2$. Give an expression for the Mean Squared Error (M.S.E.) of $S^2$. Clearly define the M.S.E. for an estimator $\widehat{\theta}$ of $\theta$ as part of your answer.
+
+c. Now, consider  a different estimator for $\sigma^2$.  
+$$ \widehat{\sigma}^2 = \frac{1}{n} \sum\limits_{i=1}^{n} (X_i - \bar{X})^2.$$  
+Which estimator, $S^2$ or $\widehat{\sigma}^2$, has the smaller M.S.E.? Find the M.S.E. of $\widehat{\sigma}^2$ and answer the question. 
+
+d. Among estimators for $\sigma^2$ of the form
+$$ c \sum_{i=1}^{n} (X_i - \bar{X})^2,$$
+where $c$ is a positive number, what value of $c$ minimizes the M.S.E.?  
+
+\emph{Hint:} Find the M.S.E. as a function of $c$ and then differentiate it with respect to $c$.
+
+
+\item (1 points) Suppose $U \sim Unif(0,1)$. Show, using the CDF method,  that $$X = -2 \ln(U) \sim Chisq(2).$$
+
+Begin by writing the PDF of a $Chisq(2)$ random variable. Then work through the CDF method to find the PDF of $X$ and match it with the PDF of the $Chisq(2)$.  
+   
+   
+\item   (1 point) An Arterisonde machine prints blood-pressure readings on a tape so that the measurement can be read rather than heard. A major argument for using such a machine is that the variability of measurements obtained by different observers on the same person will be lower than the variability with a standard blood-pressure cuff. From previously published work, the variance with a standard blood pressure cuff is $\sigma^2_0=35$. 
+
+Suppose we have data consisting of systolic blood pressure (SBP) measurements obtained on 10 people and read by two observers. We use the difference, $X$, between the first and second observers to assess \emph{inter-observer} variability. In particular, if we assume $$X \sim N(\mu, \sigma),$$ then it is of primary interest to test $H_0: \sigma^2=35$. 
+
+The data is in the file \texttt{systolic.csv}. Read it in and  create $X$, a vector of 10 differences and then calculate a 95\% confidence interval for $\sigma^2$.  (Even though investigators think the variability of the new method will be lower, they want to conduct a two sided test as the observers are less experienced in using it and this might result in an increase in the variability.)
+
+Use your confidence interval to test the hypothesis. Clearly state your conclusion in the context of the data. This means don't just say "reject the null" etc.
+
+  \end{enumerate}
+  

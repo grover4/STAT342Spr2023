@@ -1,0 +1,81 @@
+---
+title: "Homework 1"
+author: "Your Name Here"
+subtitle: "Spring 2023"
+header-includes:
+    - \usepackage{amsmath}
+    - \usepackage{amsthm}
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+#Use this code chunk to include libraries, and set global options.
+
+knitr::opts_chunk$set(echo = TRUE)
+library(fastR2)
+library(tidyverse)
+
+```
+
+### Instructions
+
+- This homework is due in Gradescope on Wednesday April 12 by midnight PST.
+
+- Please answer the following questions in the order in which they are posed. 
+
+- Don't forget to knit the document frequently to make sure there are no compilation errors. 
+
+- When you are done, download the PDF file as instructed in section and submit it in Gradescope. 
+
+* * *
+
+### Exercises
+
+1. (Simulation noise) Dustin is doing simulations to see how well the 95% z-confidence interval covers the true value of the population mean $\mu_0$. Dustin simulates $B = 10,000$ samples, each of size $n$,  from a population distribution, and for each sample he calculates the z-confidence interval, and then notes whether the confidence interval contains the true value for $\mu_0$. 
+
+   Let $X_i$ denote whether the $ith$ z-confidence interval covers the true value, then 
+$$\bar{X} = \frac{1}{B} \sum\limits_{i=1}^{B} X_i$$
+denotes the simulated coverage rate.
+
+   How high or low must the simulated coverage rate be for Dustin to suspect that the true coverage rate is not 95%? Explain. Assume we are using the usual threshold of significance $\alpha = 0.05$. (Hint: Each $X_i$ is a Bernoulli random variable with success probability $\pi_0$. What are we hypothesizing about $\pi_0$?)
+
+2. (Chick weights) The `chickwts` dataframe in the **fastR2** package presents results from an experiment in which chickens are fed six different diets. If we assume that the chickens were randomly sampled from some populatio and also were assigned to the feed groups at random, then for each feed, we can consider the chickens fed that feed to be a random sample from the (conceptual) population that would result from feeding all chickens that particular feed.
+
+
+a. For each of the 6 feeds, compute 95% confidence intervals for the mean weight of chickens fed that feed. (Use `t_test` from the package **infer** to print the results neatly. Set `options(pillarsig.fig = 6)` to format the printing of the resulting tibble. )
+
+b. From a visual examination of the six intervals, is there convincing evidence that some diets are better (lead to more weight gain) than others? Why or why not? (You will learn about the Analysis of Variance method to answer this question in STAT 421)
+
+c. Are there any features of the data that might suggest that a t-distribution may not be entirely appropriate? The following incomplete code should help you make a density plot of the weight distribution by the feed.  (I want to see references to what you learned from the simulation in Problem Set 1)
+
+```{r echo=F,eval = F}
+#remove eval=F in the chunk option after filling in the blanks
+ggplot(data = ___, 
+       mapping = aes(x = ___)) +
+  geom_density() +
+  facet_wrap(facets = vars(___) ) +
+  labs(title = "___")
+
+```
+
+3. (Psychology of Rats) Does the psychological environment affect the anatomy of the brain? The subjects for one study came from a genetically pure strain of rats. From each litter, one rat was selected at random for the treatment group and one for the control group. Both groups got the same food and drink -- as much as they wanted. But each animal in the treatment group lived with 11 others in a cage, furnished with playthings which were changed daily. Animals in the control group lived in isolation, with no toys. After a month, all animals were sacrificed and their cortex weights  measured in milligrams. The data set is in the file `brain-weights.csv`.
+
+   a. Why did the investigators decide to assign one member of each litter to treatment and another member from the same litter to the control group?  What are the advantages?
+
+   b. Explore these data by making a scatterplot, a boxplot, and calculating some summary statistics. Write briefly about what you are looking for in these plots. (be sure to show your code and output - sans error/warning messages; label your plots; keep your explanation pointed - this means just talk about what's important. )
+   
+   c. The goal is to examine if the treatment increases cortex weight. Two different analytic strategies are described below. Conduct both analyses, and summarize the conclusions.
+ 
+      - Method 1: Dichotomize the data for each pair as "1" if treatment cortex is heavier and "0" otherwise. (Ignore ties in the data if any.) Then use a binomial model to test $H_0: \pi_0 = 0.5$ versus $H_1: \pi_0 > 0.5$ where $\pi_0$ is the probability that the treatment cortex is heavier. (This method is called a \textbf{sign test} since we are recording whether the sign of the difference in weights - treatment  minus control - is positive or not. )
+  
+      - Method 2: Express the data for each pair as the difference, $D$ in cortex weights between the treatment and control animal. Then conduct a paired t-test of $H_0: \mu_d = 0$ versus $H_1: \mu_d > 0$ where $\mu_d$ is the expected value of $D$. 
+
+  d. What are some advantages/disadvantages of the sign test compared with the paired t-test?
+
+4. Suppose $X$ and $Y$ are jointly distributed with variances $\sigma^2_X$ and $\sigma^2_Y$, respectively. The correlation coefficient $\rho$ of $X$ and $Y$ is defined by 
+$$\rho = \frac{ Cov\left(X,Y \right)}{\sigma_X \: \sigma_Y}.$$
+
+a. Consider the random variable $$Z = \frac{Y}{\sigma_y}- c \frac{X}{\sigma_X}.$$
+Show that $c =  \rho$ is the value of $c$ which minimizes $Var(Z)$. (Hint: From defining principles $Var(Z) = E\left[ \left(Z-E\left[Z \right] \right)^2 \right]$ ) 
+
+b. What is the minimal value of this variance?

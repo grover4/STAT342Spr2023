@@ -69,7 +69,7 @@ set.seed(544)
 ```
 
 
-2. (Reproducing chi squares) Suppose $X \sim \chi^2_{n}$ independently of $Y \sim \chi^2_{n}$. That is, $X$ has PDF
+2. (Reproducing chi squares) Suppose $X \sim \chi^2_{m}$ independently of $Y \sim \chi^2_{n}$. That is, $X$ has PDF
 $$f_1(x) = \frac{(1/2)^{m/2} }{\Gamma(m/2)} x^{\frac{m}{2} -1} e^{-x/2}, \ \ x > 0$$
 and $Y$ has PDF
 $$f_2(y) = \frac{(1/2)^{n/2} }{\Gamma(n/2)} y^{\frac{n}{2} -1} e^{-y/2}, \ \ x > 0$$

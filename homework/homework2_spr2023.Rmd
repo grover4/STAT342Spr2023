@@ -1,0 +1,122 @@
+---
+title: "Homework 2"
+author: "Your Name Here"
+subtitle: "Spring 2023"
+header-includes:
+    - \usepackage{amsmath}
+    - \usepackage{amsthm}
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+#Use this code chunk to include libraries, and set global options.
+
+knitr::opts_chunk$set(echo = TRUE)
+library(fastR2)
+library(tidyverse)
+
+```
+
+### Instructions
+
+- This homework is due in Gradescope on Wednesday April 19 by midnight PST.
+
+- Please answer the following questions in the order in which they are posed. 
+
+- Don't forget to knit the document frequently to make sure there are no compilation errors. 
+
+- When you are done, download the PDF file as instructed in section and submit it in Gradescope. 
+
+* * *
+
+### Exercises
+
+1. (Simulation) From problem session 1, we saw from our robustness studies that the ratio 
+$$T = \frac{\sqrt{n} ( \bar{X} - \mu_0)}{S}$$
+is not well approximated by a t-distribution for \underline{small} samples taken from $Exp(\lambda_0=2)$. Therefore, use of the $t$ confidence interval formula $\bar{X} \pm t_{\alpha/2, n-1} \frac{S}{\sqrt{n}}$ in small samples where the data may have come from an exponential will likely not work very well. 
+	
+	  In this problem, you will develop an alternate confidence interval formula for $\mu_0$ which works for small samples. Specifically, suppose $X_1,X_2,\dots,X_n \overset{i.i.d.}{\sim} Exp(\lambda_0)$. Then it can be shown that (you do not have to show this):
+	$$\lambda_0\:\bar{X} \sim Gamma(n, n).$$ 
+	
+	a.  Use the distribution of $\bar{X}$ to construct an \emph{equal tailed} $100 (1-\alpha)$\% confidence interval for the mean $\mu_0 = \frac{1}{\lambda_0}$. Show your work and the formula explicitly. (You may leave $q_1$ and $q_2$ in terms of the R function that will be used to calculate them.)
+
+	b.  Use simulations to verify the coverage probability of your interval from part a by following the steps below. 
+	
+    	  i. Generate $B = 10,000$ samples each of size 6 from an $Exp(\lambda_0 = 2)$ distribution. Please set the seed at the top of the code chunk to 544.
+    	  
+    	  ii. Calculate the 95% $t$ confidence interval for each sample. Also calculate your confidence interval from part a. 
+    	  
+    	  iii. Calculate and report the coverage rates for the two confidence intervals across the 10,000 samples. Also contrast the intervals in terms of their pattern of non-coverage. This means, when they miss the true mean, is it because the mean lies below the interval? Or above? Or both above and below?
+    	  
+    	  iv. Perform a large sample significance test to evaluate whether the intervals from part iii. have a nominal coverage rate of 95%. Use $\alpha = 0.01$ to make a decision. (Hint: this is related to problem 1 on HW 1)
+
+Students: We only want to see the interpretative portion of your answer to part b in the main document: this means answers to the questions asked in part iii. and iv written as a brief paragraph with the simulated coverage rates and P-value clearly indicated. Your code needs to be shown in an Appendix.  Please type your code in the chunk below as given.
+
+
+
+```{r label="code-for-problem1", echo = F, eval=F}
+set.seed(544)
+
+## code to generate samples of size 6 from Exp(lambda=2)
+## and calculate 95% t-confidence interval and also exact confidence
+## interval from part a.
+
+
+## code to calculate coverage rates of the two intervals for part iii.
+
+
+## code to calculate P-value for part iv.
+```
+
+
+2. (Reproducing chi squares) Suppose $X \sim \chi^2_{n}$ independently of $Y \sim \chi^2_{n}$. That is, $X$ has PDF
+$$f_1(x) = \frac{(1/2)^{m/2} }{\Gamma(m/2)} x^{\frac{m}{2} -1} e^{-x/2}, \ \ x > 0$$
+and $Y$ has PDF
+$$f_2(y) = \frac{(1/2)^{n/2} }{\Gamma(n/2)} y^{\frac{n}{2} -1} e^{-y/2}, \ \ x > 0$$
+Let $S = X + Y$ be their sum.   Show, using the method of convolution, that $$S = X + Y \sim \chi^2_{m+n}.$$ That is, show that
+$S$ has PDF
+$$f(s) = \frac{(1/2)^{(m+n)/2}}{\Gamma((m+n)/2) } s^{(m+n)/2-1} e^{-s/2} \ \ s > 0.$$
+You may use without proof that
+$$\frac{ \Gamma(m) \: \Gamma(n)}{\Gamma(m + n)} = \int\limits_{0}^{1} x^{m-1}\:(1-x)^{n-1}\:dx$$
+
+
+    Hint: Denote the PDF of $S$ by $f$ Recall from chapter 16 that
+$$f(s) = \int\limits_{0}^{s} f_1(x) \:f_2(s - x)\:dx$$ Plug in for $f_1$ and $f_2$ and simplify.
+
+3. (Dark Matter) Two	independent	research teams	claim	to	have	discovered	the	elusive	dark	matter.	They	have	used completely	
+independent	methods,	and	completely	different	statistical	tests	(although	in	both	
+cases,	rejecting	the	null	hypothesis	implies	the	discovery	of	dark	matter).	However,	
+neither	group	has	obtained	a	significant	P-value,	achieving	0.06	and	0.08,	
+respectively.	They	want	to	combine	their	results	somehow. Here are two facts:
+
+   - When a null hypothesis is true, P-values follow a $Unif(0,1)$ distribution.   
+   
+   - If $U \sim Unif(0,1)$ then $-2 \ln(U) \sim \chi^2_{2}$. 
+   
+    Knowing that the 95th percentile of a $\chi^2_{4}$ distribution is 9.49, how would you suggest they combine their results? 
+
+    Hint: you will need to also use what you learned from problem 2 to define a combined test statistic whose distribution you know under the null hypothesis. Then see whether the observed value of the test statistic provides a contradiction to this distribution.
+    
+   
+
+4. (Blood pressure) An \emph{Arterisonde machine}  prints blood-pressure readings on a tape so that the measurement can be read rather than heard. A major argument for using such a machine is that the variability of measurements obtained by different observers on the same person will be lower than the variability  with a standard blood-pressure cuff. From previously published work, the variance with a standard blood pressure cuff is $\sigma_0^2=35$.
+
+Suppose we have data consisting of systolic blood pressure (SBP) measurements obtained on 10 people and read by two observers. We use the difference between the first and second observers to assess inter-observer variability. In particular, if we assume the underlying distribution of these \textbf{differences} is normal with mean $\mu_0$ and variance $\sigma^2_0$, then it is of primary interest to make inference about $\sigma^2_0$.
+
+The data is in the file `systolic.csv`. Calculate and interpret (in context) a 95% confidence interval for $\sigma_0^2$.   (Even though investigators think the variability of the new method will be lower, we calculate a two sided confidence interval as the observers are less experienced in using it and this might result in an increase in the variability.)
+
+Create a brief report (of sorts) where you include a description of the data and scientific problem, model/assumptions, the confidence interval, and a conclusion. (Put R code in the appendix.)  
+
+
+
+
+
+
+## Appendix 
+
+### Problem 1 code
+
+```{r ref.label="code-for-problem1", echo=TRUE, eval=F}
+
+
+```

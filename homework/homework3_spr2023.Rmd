@@ -12,6 +12,7 @@ output: pdf_document
 #Use this code chunk to include libraries, and set global options.
 
 knitr::opts_chunk$set(echo = TRUE)
+library(fastR2)
 library(tidyverse)
 library(janitor)
 ```
@@ -58,7 +59,7 @@ either in sales, administrative support, clerical, or customer services.
   b. Is there evidence of discrimination? Calculate a 95% confidence interval for the difference in callback rates for black and white applicants. Please state your interval clearly and then write your conclusion in context. (You may use R as a calculator.)
   
   
-3. Suppose $$X_1,X_2,\dots,X_n \overset{i.i.d.}{\sim} \mu_1, \sigma_0$$ independently of $$Y_1,Y_2,\dots,Y_m \overset {i.i.d.}{\sim} \mu_2, \sigma_0.$$
+3. Suppose $$X_1,X_2,\dots,X_n \overset{i.i.d.}{\sim} Norm(\mu_1, \sigma_0)$$ independently of $$Y_1,Y_2,\dots,Y_m \overset {i.i.d.}{\sim} Norm(\mu_2, \sigma_0).$$
 
    Let $S^2_1$ be the usual unbiased estimator of $\sigma_0^2$ based on the $X$'s, that is,
 $$S^2_1= \frac{1}{n-1} \sum\limits_{i=1}^{n} \left(X_i - \bar{X} \right)^2.$$

@@ -110,7 +110,7 @@ STAR %>% tabyl(kinder)
 a. How does performance on fourth grade reading and math tests for those students assigned to a small class in kindergarten compare with those assigned to a regular-sized class? Do students in the smaller classes perform better? Give a brief substantive interpretation
 of the results. Show \textbf{tidy} output from `t_test` along with your code.
 
-b. Next, we examine whether the STAR program reduced the achievement gaps across different racial groups. Begin by re-coding the `race` variable by changing integer values to their corresponding informative labels. Be sure to print the frequency distribution of `race`. (Show your code for this part)
+b. Next, we examine whether the STAR program reduced the achievement gaps across different racial groups. Begin by re-coding the `race` variable by changing integer values to their corresponding informative labels. Call the new variable `race_desc`. Be sure to print the frequency distribution of `race_desc`. (Show your code for this part)
 
 
 c. Compare the average reading and math test scores between white and black students among those students who were assigned to regular classes with no aid. Conduct the same comparison among those students who were assigned to small classes. Give a brief substantive

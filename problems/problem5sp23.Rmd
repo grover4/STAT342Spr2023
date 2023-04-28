@@ -1,0 +1,72 @@
+---
+title: "Problem Section 5"
+subtitle:  "Numerical Methods"
+graphics: yes
+output: pdf_document
+header-includes: 
+- \usepackage{amssymb, amsmath, amsfonts}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(maxLik)
+```
+
+### Exercises 
+
+
+1. A sample of size 10 drawn from $Gamma(k,2)$ PDF:
+$$f(x) = \frac{2^{k}}{\Gamma(k)} x^{k-1} e^{-2x} \ \ x > 0$$
+where $k > 0$ is the shape parameter. The scale parameter is known and equal to 2.
+
+The observed data is shown below:
+```{r}
+x <- c(1.425, 2.216, 0.738, 0.590, 1.266, 0.601, 0.483, 1.313,  1.707, 1.008)
+
+```
+
+a. What equation do you need to solve to find the MLE of $k$? 
+
+
+b. Since the equation is non-linear in $k$, we will use Newton Raphson to find the root of the equation. 
+
+   - Use the method of moments to find an estimate of $k$. 
+   
+   - With this estimate as a starting value along with the sample and use `maxLik()` function in R, to compute the MLE of $k$.
+
+2. One study of grand juries in Alameda County, CA compared the demographic characteristics of 66 jurors with the general population, to see if jury panels were representative. The results for age are given below. (Only persons age 21 and over are considered; the county age distribution is known from Public Health Department data.)
+
+\begin{tabular}{ccc}
+	& \emph{County-wide} & \emph{Number of} \\
+	\emph{Age} & \emph{percentage} & \emph{jurors} \\ \hline
+	21 to 40 & 42 & 5 \\
+	41 to 50 & 23 & 9 \\
+	51 to 60 & 16 & 19 \\
+	61 and over & 19 & 33 \\ \hline
+	Total & 100 & 66 
+\end{tabular}
+
+Assume the counts $X_1,X_2,X_3, X_4$ in the four age categories follow a multinomial distribution with $n=66$ and cell probabilities $\pi_1,\pi_2,\pi_3,\pi_4$.
+
+a. Estimate the cell probabilities using maximum likelihood. Calculate the value of the maximized likelihood.
+
+b. Suppose jury panels are in fact representative of the population. What are we hypothesizing about the values of the cell probabilities? Calculate the value of the likelihood function assuming this hypothesis is true.
+
+c. Compare the values from parts a and b. What do you conclude about the hypothesis? Explain your thinking.
+
+3. (Scientific Context) In	order	to	estimate	the	intensity	$\lambda$	of	a	radioactive	source,	the	number of emissions	during	600	seconds	was	counted	(using	a	particle	counter)	with	the	result	
+4711.	The	particle	counter	was	receiving	counts	in	a	spatial	angle	of	0.181	relative	to the point	source.	The	counting	was disturbed	by	a	background	radiation	with	
+intensity	$\lambda_B$,	and	in	order	to	eliminate	this,	the	background	radiation	was	measured for 60 seconds, receiving 69	particles.	
+
+(Statistical Context) The	numbers	4711	and	69	may	be	modeled	
+as	observations	of	independent	Poisson	random	variables	with	parameters	$600(\lambda_B+0.181 \lambda)$ and	60 $\lambda_B$,	respectively.	
+
+a. Find	the	MLE	of	$\lambda_B$.	(Hint: write the log likelihood function $\ell(\lambda, \lambda_B)$ and differentiate it with respect to $\lambda$ and $\lambda_B$ and set equal to zero. Try and solve both equations simultatneously. It will simplify quite a bit!)
+
+b. Is	it unbiased?	
+
+c. What	is its standard	error?
+
+
+

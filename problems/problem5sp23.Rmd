@@ -55,11 +55,9 @@ b. Suppose jury panels are in fact representative of the population. What are we
 
 c. Compare the values from parts a and b. What do you conclude about the hypothesis? Explain your thinking.
 
-3. (Scientific Context) In	order	to	estimate	the	intensity	$\lambda$	of	a	radioactive	source,	the	number of emissions	during	600	seconds	was	counted	(using	a	particle	counter)	with	the	result	
-4711.	The	particle	counter	was	receiving	counts	in	a	spatial	angle	of	0.181	relative	to the point	source.	The	counting	was disturbed	by	a	background	radiation	with	
-intensity	$\lambda_B$,	and	in	order	to	eliminate	this,	the	background	radiation	was	measured for 60 seconds, receiving 69	particles.	
+3. (Scientific Context) In	order	to	estimate	the	intensity	$\lambda$	of	a	radioactive	source,	the	number of emissions	during	600	seconds	was	counted	(using	a	particle	counter)	with the	result 4711. The	particle	counter	was	receiving	counts	in	a	spatial	angle	of	0.181	relative	to the point	source.	The	counting	was disturbed	by	a	background	radiation	with intensity $\lambda_B$, and	in	order	to	eliminate	this,	the	background	radiation	was	measured for 60 seconds, receiving 69	particles.	
 
-(Statistical Context) The	numbers	4711	and	69	may	be	modeled	
+   (Statistical Content) The	numbers	4711	and	69	may	be	modeled	
 as	observations	of	independent	Poisson	random	variables	with	parameters	$600(\lambda_B+0.181 \lambda)$ and	60 $\lambda_B$,	respectively.	
 
 a. Find	the	MLE	of	$\lambda_B$.	(Hint: write the log likelihood function $\ell(\lambda, \lambda_B)$ and differentiate it with respect to $\lambda$ and $\lambda_B$ and set equal to zero. Try and solve both equations simultatneously. It will simplify quite a bit!)

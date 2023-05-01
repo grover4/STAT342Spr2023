@@ -48,7 +48,7 @@ options(pillar.sigfig=6)
 	 Prove this result for $P(MM)$. Be sure to show and justify your steps. \textbf{Since I am basically setting up the problem formulation for you, we are going to assess mastery of the concepts.}
 	
 	Hint: Label the members of a pair of twins as 1 and 2. Let $T_1$ denote the event that twin 1 is M, $T_2$ is the event that twin 2 is M. And let $I$ denote the event that the twins are identical. Then the event "MM" is the union of two disjoint events: 
-	$$MM = (T_1 \cap T_2 \cap I ) \cup (T_1 \cap T_2 \cap I)$$ 
+	$$MM = (T_1 \cap T_2 \cap I ) \cup (T_1 \cap T_2 \cap I^c)$$ 
 	
 	\emph{Review chapters 2 and 4 if you need a reminder}
 	

@@ -81,7 +81,7 @@ options(pillar.sigfig=6)
 ### google "cache chunk option" to see what it does
 
 set.seed(188)
-x<-rep(c("MM","MF","FF"), times = c(15,15,10) )
+x<-rep(c("MM","MF","FF"), times = c(10,15,15) )
 B=10000
 
 boot_sim <- lapply(1:B, FUN = function(i){ 

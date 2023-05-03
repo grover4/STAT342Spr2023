@@ -85,11 +85,16 @@ x<-rep(c("MM","FF","MM"), times = c(10,15,15) )
 B=10000
 
 boot_sim <- lapply(1:B, FUN = function(i){ 
-    # generate a resample from x #  
+# generate a resample from x #  
     
-    #count the number of MM,MF, FF
+#count the number of MM (x1),FF (x2), MF (x3) 
+#look carefully at your new x and make sure you
+#are calculating (#MM + #FF - #MF)/40
     
-    #calculate bootstrapped MLE of alpha and return value as dataframe
+  
+  
+#calculate bootstrapped MLE of alpha and return #value as dataframe. You might want to calculate the #the MLE as maximum of (x1+x2-x3)/n and 0, since alpha is a #probability.
+    
     
    })
 

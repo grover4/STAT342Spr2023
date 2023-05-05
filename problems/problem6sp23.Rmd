@@ -1,0 +1,41 @@
+---
+title: "Problem Section 6"
+subtitle:  "Likelihood Inference"
+graphics: yes
+output: pdf_document
+header-includes: 
+- \usepackage{amssymb, amsmath, amsfonts}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(maxLik)
+```
+
+### Exercises 
+
+1. Suppose the number of students who arrive late to each of 10 consecutive lectures can be modeled as independent draws from a Poisson distribution with rate $\lambda_0$:
+$$f(x) = \frac{ e^{-\lambda_0}\:\lambda_0^{x}}{x!} \ \ \ x = 0,1,2,\dots$$
+The data are observed as follows: $x_1=0, x_2=0,x_3=0,x_4=1,x_5=1,x_6=1,x_7=2,x_8=2,x_9=3,x_{10}=3$.
+
+a. Find the MLE $\widehat{\lambda}_0^{mle}$. (Hint: write the log likelihood function $\ell(\lambda)$ in terms of the $x$'s and only plug in the values after you have solved the first order equation. )
+
+b. Find the observed information $-\ell^{\prime \prime}(\widehat{\lambda}_0^{mle})$. 
+
+c. Use the large sample normality of the MLE to find an approximate 95% Wald confidence interval for $\lambda_0$.
+
+d. Examine the quality of the second-order approximation to the log-likelihood. 
+
+e. Suppose we wish to test $H_0: \lambda_0 = \lambda_0^{null}$ versus $H_1: \lambda_0 \neq \lambda_0^{null}$. Give an expression for 
+$$W = 2 \ln\left[ \frac{L(\widehat{\lambda}_0^{mle})}{L(\widehat{\lambda}_0^{null})} \right],$$ the likelihood ratio test statistic.
+
+f. Calculate the (large sample) P-value testing $\lambda_0^{null}=1$. That is assume $W \sim \chi^2_1$ under the null hypothesis. 
+
+g. Since $n=10$ is not really a large sample, an alternative approach is to calculate an empirical P-value. Take a look at chapter 20.4 where I show you how to calculate one for a Poisson model. Write code below to find the empirical P-value for the likelihood ratio test statistic $W$ from part e.
+
+```{r}
+set.seed(175)
+
+```
+

@@ -1,5 +1,5 @@
 ---
-title: "Homework 7"
+title: "Homework 6"
 author: "Your Name Here"
 subtitle: "Spring 2023"
 header-includes:

@@ -2,7 +2,7 @@
 title: "Problem Section 7"
 subtitle:  "Prior and Posterior"
 graphics: yes
-output: pdf_document
+output: html_document
 header-includes: 
 - \usepackage{amssymb, amsmath, amsfonts}
 ---
@@ -17,8 +17,8 @@ library(leaflet)
 
 ### Exercises 
 
-1. The R function `leaflet_map` from the \textbf{leaflet} package can be used to generate random locations on the globe and to use Google maps to show you where these locations are:
-```{r eval=F}
+1. The R function `leaflet_map`  can be used to generate random locations on the globe and to use Google maps to show you where these locations are:
+```{r }
 
 set.seed(3535)
 

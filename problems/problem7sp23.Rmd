@@ -1,0 +1,48 @@
+---
+title: "Problem Section 7"
+subtitle:  "Prior and Posterior"
+graphics: yes
+output: pdf_document
+header-includes: 
+- \usepackage{amssymb, amsmath, amsfonts}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(fastR2)
+library(LearnBayes)
+library(leaflet)
+```
+
+### Exercises 
+
+1. The R function `leaflet_map` from the \textbf{leaflet} package can be used to generate random locations on the globe and to use Google maps to show you where these locations are:
+```{r eval=F}
+
+set.seed(3535)
+
+leaflet_map(position=rgeo(n=20),mark=TRUE)
+```
+
+Use this to gather a sample of size 20 and calculate the proportion of the sample that represents a location which is covered with water. (You may need to zoom in for locations that are near where land and water meet)
+
+Let's assume that $X$, the number out of the 20 randomly selected locations which are covered with water, is a binomial random variable with success probability $\pi$. 
+
+a. Calculate the posterior distribution for the proportion of the earth that is covered with water. Use a uniform prior for $\pi$. Make a plot of the uniform prior and the resulting posterior distribution on the same graph.
+
+b. Now suppose a Bayesian wants to use a beta distribution which reflects the prior knowledge that a majority of the earth is covered with water. Specifically, they assume that the mean of the prior is 0.70 and the variance is 0.05.
+
+   i. Keeping in mind that for a $Beta(\alpha, \beta)$ distribution, $$E\left[X \right] = \frac{ \alpha}{\alpha + \beta}$$
+   and the variance is
+   $$Var\left[ X \right] =  \left( \frac{ \alpha}{\alpha + \beta} \right) \times \left(\frac{\beta}{\alpha + \beta} \right) \times
+   \frac{1}{\alpha+\beta+1}$$
+ elicit the values for $\alpha$ and $\beta$. 
+
+    (Hint: Write the variance in terms of the mean as much as possible. It will help to remember that $\frac{\beta}{\alpha+\beta} = 1 - \frac{\alpha}{\alpha+\beta}$)
+    
+   ii. Now calculate the posterior distribution using this informative prior from part i. 
+   
+   iii. Make a plot of your prior and the resulting posterior distribution in one graph.
+
+c. Now suppose you consider a prior with a median of 0.7 and 95\% of the distribution lies above 0.68. Use the `beta.select` function from the **LearnBayes** package to find the values of $\alpha$ and $\beta$ corresponding to these prior beliefs. Then repeat parts ii and iii from part b with this prior.

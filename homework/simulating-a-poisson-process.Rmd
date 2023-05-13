@@ -1,0 +1,102 @@
+---
+title: "Modeling a Poisson Process"
+author: "YOUR NAME "
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+ALL CODE CHUNKS HAVE BEEN SET TO NOT EVALUATE BY DEFAULT. SEE SETUP CHUNK. AFTER YOU HAVE WORKED THROUGH THE ENTIRE DOCUMENT INTERACTIVELY, YOU CAN REMOVE THE EVAL=FALSE IN THE SETUP BEFORE KNITTING.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(tidyverse)               
+```
+
+
+As we saw in chapter 11, the Poisson and exponential distribution are connected. This connection, along with the fact that the exponential distribution is memoryless, enables us to simulate the timing of Poisson events using the exponential distribution to model the time between consecutive events.
+
+
+Consider the following code to simulate 40 realizations of a Poisson random variable $X \sim Pois(\lambda = 1)$. The data frame `Pois_sim` contains 40 inter-event times (in minutes) in the column called `interval`. Run the following code chunk and examine the data frame. 
+
+(Talk to your group to make sure everyone understands what is in the data frame.)
+
+
+```{r generate-pois}
+#Set the random number seed for reproducibility. Pick a number, any number.
+set.seed(11414)            
+
+Pois_sim_1 <- tibble(
+  interval = rexp(n = 40, rate = 1),
+  time = cumsum(interval)
+)
+
+```
+
+
+a. What is the longest `interval` you have to wait for the event to occur? shortest? Write code to print these values. 
+
+
+
+b. What is the column `time` calculating? Write your answer in words below.
+
+The following code shows the simulation of the Poisson events. (Note: the y axis is not meaningful in this picture, but we will leave it alone for now.)
+
+c 
+(i) Uncomment the options inside the `theme` layer starting with `axis.line` and add them back in one at a time to see what they do. 
+
+```{r plot-process}
+
+ggplot(data=Pois_sim_1, 
+       mapping=aes(x = time, y = 0)) + 
+  geom_point() +
+  labs(x = "time elapsed (in minutes) ")+
+  theme(#axis.line = element_line(colour = "black"),
+        #panel.grid.major.x=element_blank(),
+        #panel.grid.minor.x=element_blank(),
+        #panel.background = element_blank(),
+  )
+```
+
+
+c
+(ii) Draw vertical lines at time 0, 5, ..., 40 using `geom_vline`. How many events do you usually see in a 5 minute time interval. Try the option `position = position_jitter(width = 0.01, height = 0.01)` in the `geom_point` layer to add some random noise to help separate the points and reduce over-plotting. 
+
+
+
+Let's repeat the simulation 10 times. We will use the `expand_grid` function to create a tibble which has two columns: `run` which varies from 1 to 10 in increments of 1, and $i$ which varies from 1 to 40 denoting each of the 40 inter-event times. Run the following code chunk and examine `Pois_sim_10` by clicking on it from the Environment.
+
+(Again, talk within the group to understand what is being created when we use `expand_grid`. Read up the help on it to better understand what it does.)
+
+```{r set-up-for-simulation}
+set.seed(5115)
+
+Pois_sim_10 <- expand_grid( 
+    run = 1:10,
+    i = 1:40
+)
+```
+
+Next, for each value of `run`, we generate our 40 exponential inter-event times as shown below. 
+
+Comment out the line `group_by`. Why does this throw a error? What does `group_by` do?
+
+```{r sim-10}
+
+Pois_sim_10 <- Pois_sim_10 %>% 
+               group_by(run) %>%   #for each run
+                mutate(interval = rexp(n = 40, rate=1))
+```
+
+
+d. Create the variable `time` in the `mutate` layer of the previous code chunk. 
+
+e. Using the `Pois_sim_10` dataframe, repeat the plot from part c with the run on the y axis and time on the x axis. Add horizontal lines also this time using `geom_hline` with `yintercept=0.5:9.5`
+
+
+
+
+
+# CONCLUSION
+
+You have simulated 10 replications of a Poisson process! It shows that although the location of event clusters and gaps cannot be predicted, their presence can

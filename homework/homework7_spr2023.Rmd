@@ -75,7 +75,7 @@ b. Suppose we assume $\tau$ is a Gamma random variable, that is our prior distri
    
   b. The probability you found in a. is called a \emph{False Discovery Rate (FDR)}. Your calculation shows that even though we control the Type 1 error rate at 0.05, the FDR can be high. 
    
-   Write a function in R to perform the FDR computation in part a. which takes as input: the probability of $H$, the Type 1 and Type 2 error rates, and calculates the FDR. Then run it for all combinations of the following inputs:
+  Write a function in R (show your code) to perform the FDR computation in part a. which takes as input: the probability of $H$, the Type 1 and Type 2 error rates, and calculates the FDR. Then run it for all combinations of the following inputs:
   
   - $P(H)$: 0.05, 0.1, 0.2, 0.5
   
@@ -83,10 +83,32 @@ b. Suppose we assume $\tau$ is a Gamma random variable, that is our prior distri
   
   - Type 2 error rate: 0.05, 0.2, 0.3, 0.5
   
-    Make a table of the resulting FDRs, and write a few sentences summarizing what you observe. Conclude your summary with practical advice for the data scientist who is wondering how to choose their $\alpha$ level for a significance test.   (You can manually supply all the combinations of inputs to your function, or check out `expand_grid` to generate a data frame with one row for each combination of the inputs.  See `simulating-a-poisson-process.Rmd` from STAT 340 which I have pushed to your HW folder.)
+    Fill in the table showing the resulting FDRs, and write a few sentences summarizing what you observe. Conclude your summary with practical advice for the data scientist who is wondering how to choose their $\alpha$ level for a significance test.   (You can manually supply all the combinations of inputs to your function, or check out `expand_grid` to generate a data frame with one row for each combination of the inputs.  See `simulating-a-poisson-process.Rmd` from STAT 340 which I have pushed to your HW folder.)
   
+\begin{table}[h]
+\centering
+\caption{False Discovery Rate for varying inputs}
+\begin{tabular}{||c|c|c|c|c||c|c|c|c||} \hline
+& \multicolumn{8}{c|}{Type 1 error} \\  \hline 
+& \multicolumn{4}{c|}{0.0001} & \multicolumn{4}{c|}{0.005}\\ \hline
+ & \multicolumn{4}{c|}{Type II error} & \multicolumn{4}{c|}{Type II error}  \\ \hline
+$P(H)$ & 0.05 & 0.2 & 0.3 & 0.5 & 0.05 & 0.2 & 0.3 & 0.5  \\ \hline
+0.05 & & & & & & & &   \\ \hline
+0.10 & & & & & & & &   \\ \hline
+0.20 & & & & & & & &   \\ \hline
+0.50 & & & & & & & &   \\ \hline \hline
+& \multicolumn{8}{c|}{Type 1 error} \\  \hline 
+& \multicolumn{4}{c|}{0.01} & \multicolumn{4}{c|}{0.05} \\ \hline
+& \multicolumn{4}{c|}{Type II error} & 
+\multicolumn{4}{c|}{Type II error}  \\ \hline
+$P(H)$ & 0.05 & 0.2 & 0.3 & 0.5 & 0.05 & 0.2 & 0.3 & 0.5 \\ \hline
+0.05 & & & & & & & &   \\ \hline
+0.10 & & & & & & & &   \\ \hline
+0.20 & & & & & & & &   \\ \hline
+0.50 & & & & & & & &   \\ \hline \hline
+\end{tabular}
+\end{table}
 
-  
 4. Before a U.S. Presidential election, polls are taken in two swing states. The Republican candidate was preferred by 59 out of the 100 people sampled in state A and by 525 out of 1,000 sampled in state B.  
 
 a. If we can treat these polls as if the samples were randomly drawn from the population with a proportion $\pi$ voting Republican, use a large sample Z test of $H_0: \pi = 0.5$ versus $H_1: \pi > 0.5$ to determine which state has greater evidence supporting a Republican victory.  Show your work.
